@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form Inside Animated Ring</title>
+  <style>
+    /* Keyframes untuk animasi */
+    @keyframes animate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes animate2 {
+      0% { transform: rotate(360deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    /* Styling untuk elemen .ring dan child i */
+    .ring {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      margin: 50px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .ring i {
+      position: absolute;
+      top: 5;
+      left: 5;
+      width: 125%;
+      height: 125%;
+      border: 2px solid transparent;
+      box-sizing: border-box;
+      border-radius: 70%; /* Membuat lingkaran */
+    }
+    .ring i:nth-child(1) {
+      border-radius: 58% 62% 63% 37% / 102% 104% 116% 127%;
+      animation: animate 6s linear infinite;
+      border: 6px solid lawngreen;
+      filter: drop-shadow (0 0 30px lawngreen);
+    }
+    .ring i:nth-child(2) {
+      border-radius: 102% 104% 116% 127% / 58% 62% 63% 37%;
+      animation: animate 4s linear infinite;
+      border: 6px solid red;
+      filter: drop-shadow (0 0 30px red);
+    }
+    .ring i:nth-child(3) {
+      border-radius: 102% 104% 116% 127% / 58% 62% 63% 37%;
+      animation: animate2 10s linear infinite;
+      border: 6px solid yellow;
+      filter: drop-shadow (0 0 30px yellow);
+    }
+
+    /* Styling untuk login form */
+    .login-form {
+      position: relative;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 80%; /* Agar muat di dalam lingkaran */
+      max-width: 250px; /* Batas maksimal lebar */
+      z-index: 10; /* Pastikan form berada di atas animasi */
+    }
+    .login-form h2 {
+      margin-bottom: 20px;
+      font-size: 20px;
+      color: #333;
+    }
+    .login-form input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .login-form button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .login-form button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Media Query untuk Responsivitas */
+    @media (max-width: 600px) {
+      .ring {
+        width: 250px;
+        height: 250px;
+      }
+      .login-form h2 {
+        font-size: 18px;
+      }
+      .login-form input,
+      .login-form button {
+        font-size: 12px;
+      }
+    }
+
+    /* Class untuk menyembunyikan label secara visual */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="ring">
+    <i></i>
+    <i></i>
+    <i></i>
+    <div class="login-form">
+      <h2>Login Rama</h2>
+      <form>
+        <label for="username" class="sr-only">Username</label>
+        <input type="text" id="username" placeholder="Username" required>
+        
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" placeholder="Password" required>
+        
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.querySelector('form').addEventListener('submit', function (e) {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      if (!username || !password) {
+        e.preventDefault();
+        alert('Silakan isi semua field.');
+      }
+    });
+  </script>
+</body>
+</html>
