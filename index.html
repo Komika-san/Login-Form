@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hacker Login Form</title>
+  <style>
+    /* Global Styling */
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      color: #0f0;
+      font-family: 'Courier New', Courier, monospace;
+      overflow: hidden;
+    }
+
+    /* Keyframes for Animations */
+    @keyframes animate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes animate2 {
+      0% { transform: rotate(360deg); }
+      100% { transform: rotate(0deg); }
+    }
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-5px, 5px); }
+      40% { transform: translate(5px, -5px); }
+      60% { transform: translate(-5px, 5px); }
+      80% { transform: translate(5px, -5px); }
+      100% { transform: translate(0); }
+    }
+
+    /* Styling for .ring and child i */
+    .ring {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      margin: 50px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .ring i {
+      position: absolute;
+      top: 5;
+      left: 5;
+      width: 125%;
+      height: 125%;
+      border: 2px solid transparent;
+      box-sizing: border-box;
+      border-radius: 70%; /* Circular shape */
+    }
+    .ring i:nth-child(1) {
+      border-radius: 58% 62% 63% 37% / 102% 104% 116% 127%;
+      animation: animate 6s linear infinite;
+      border: 6px solid cyan;
+      filter: drop-shadow(0 0 30px cyan);
+    }
+    .ring i:nth-child(2) {
+      border-radius: 102% 104% 116% 127% / 58% 62% 63% 37%;
+      animation: animate 4s linear infinite;
+      border: 6px solid magenta;
+      filter: drop-shadow(0 0 30px magenta);
+    }
+    .ring i:nth-child(3) {
+      border-radius: 102% 104% 116% 127% / 58% 62% 63% 37%;
+      animation: animate2 10s linear infinite;
+      border: 6px solid lime;
+      filter: drop-shadow(0 0 30px lime);
+    }
+
+    /* Styling for Login Form */
+    .login-form {
+      position: relative;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      border: 2px solid #0f0;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+      text-align: center;
+      width: 70%;
+      max-width: 250px;
+      z-index: 10;
+      animation: glitch 0.5s infinite;
+    }
+    .login-form h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #0f0;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .login-form input {
+      width: 85%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #0f0;
+      border-radius: 5px;
+      background: transparent;
+      color: #0f0;
+      font-size: 14px;
+      outline: none;
+    }
+    .login-form input::placeholder {
+      color: #0f0;
+      opacity: 0.7;
+    }
+    .login-form button {
+      width: 100%;
+      padding: 10px;
+      background-color: #0f0;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .login-form button:hover {
+      background-color: #0c0;
+    }
+
+    /* Media Query for Responsiveness */
+    @media (max-width: 600px) {
+      .ring {
+        width: 250px;
+        height: 250px;
+      }
+      .login-form h2 {
+        font-size: 20px;
+      }
+      .login-form input,
+      .login-form button {
+        font-size: 12px;
+      }
+    }
+
+    /* Class to hide labels visually */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="ring">
+    <i></i>
+    <i></i>
+    <i></i>
+    <div class="login-form">
+      <h2>Login</h2>
+      <form>
+        <label for="username" class="sr-only">Username</label>
+        <input type="text" id="username" placeholder="Username" required>
+        
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" placeholder="Password" required>
+        
+        <button type="submit">Access</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    document.querySelector('form').addEventListener('submit', function (e) {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      if (!username || !password) {
+        e.preventDefault();
+        alert('All fields are required.');
+      }
+    });
+  </script>
+</body>
+</html>
